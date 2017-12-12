@@ -4,14 +4,22 @@ const server = require("http").createServer(handler)
 const urlEmitter  = require("./event")
 // 使用socket.io模块,并注册到http服务
 const io = require("socket.io")(server)
+// 引入mime-type文件
+const mimeType = require("./mime.json")
+const path = require("path")
 
 // http请求处理
 function handler(req,res){
     // 当有请求进入时,将url发送到连接端
     urlEmitter.emit("url",req.url)
     // 当连接端,发送数据时,将数据沿http请求返回
+    // console.log(mimeType[path.extname(req.url)])
+    
     urlEmitter.on("urldata",(data)=>{
-        res.end(data)        
+        if(data){
+            res.writeHead(200,{"Content-Type":getMime(req.url)})
+        }
+        res.end(data)
     })
 }
 
@@ -38,3 +46,15 @@ io.on("disconnect",()=>{
 
 module.exports=server
 
+function getMime(url){
+    let plain = "text/plain"
+    if(!url){
+        return plain
+    }
+    let type = mimeType[path.extname(url)]
+    if(type){
+       return type 
+    }else{
+        return "text/html"
+    }
+}
