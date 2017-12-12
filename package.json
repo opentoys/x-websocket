@@ -4,7 +4,6 @@
   "description": "利用websocket实现简单的外网映射工具,便于日常调试接口",
   "main": "server.js",
   "dependencies": {
-    "express": "^4.16.2",
     "socket.io": "^2.0.4"
   },
   "devDependencies": {},
