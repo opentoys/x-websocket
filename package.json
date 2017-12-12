@@ -1,0 +1,31 @@
+{
+  "name": "x-websocket",
+  "version": "0.0.2",
+  "description": "利用websocket实现简单的外网映射工具,便于日常调试接口",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.16.2",
+    "socket.io": "^2.0.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coderswin/x-websocket.git"
+  },
+  "keywords": [
+    "websocket",
+    "network",
+    "x-series",
+    "x-websocket"
+  ],
+  "author": "xiaoyiyu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/coderswin/x-websocket/issues"
+  },
+  "homepage": "https://github.com/coderswin/x-websocket#readme"
+}
