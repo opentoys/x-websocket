@@ -19,3 +19,9 @@
 [使用说明](https://github.com/coderswin/x-websocket-cli)
 
 
+#### 3. 存在问题
+
+1. 大文件传输
+2. ajax请求处理
+3. 错误描述不完整
+
