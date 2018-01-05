@@ -15,11 +15,13 @@ function handler(req,res){
     // 当连接端,发送数据时,将数据沿http请求返回
     // console.log(mimeType[path.extname(req.url)])
     
-    urlEmitter.on("urldata",(data)=>{
+    urlEmitter.on("urldata",(url,data)=>{
         if(data){
             res.writeHead(200,{"Content-Type":getMime(req.url)})
         }
-        res.end(data)
+        if(url==req.url){
+            res.end(data)
+        }
     })
 }
 
@@ -32,9 +34,9 @@ io.on("connection",(socket)=>{
         socket.emit("url",data)
     })
     // 接收客户端发来的数据
-    socket.on("urldata",(data)=>{
+    socket.on("urldata",(url,data)=>{
         // 触发数据发送,到http请求中
-        urlEmitter.emit("urldata",data)
+        urlEmitter.emit("urldata",url,data)
     })
 })
 
